@@ -15,9 +15,12 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.draw.shadow
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import com.jotadev.pokeapp.R
+import com.jotadev.pokeapp.ui.presentation.theme.orange
 
 @Composable
 fun FilterButton(
@@ -27,7 +30,8 @@ fun FilterButton(
     Box(
         modifier = modifier
             .clip(RoundedCornerShape(16.dp))
-            .background(MaterialTheme.colorScheme.surfaceVariant)
+            .shadow(8.dp, RoundedCornerShape(16.dp))
+            .background(orange)
             .clickable(onClick = onClick)
             .padding(horizontal = 16.dp, vertical = 8.dp),
         contentAlignment = Alignment.Center
@@ -38,12 +42,12 @@ fun FilterButton(
             Icon(
                 painter = painterResource(id = R.drawable.ic_filter),
                 contentDescription = "Filtrar",
-                tint = MaterialTheme.colorScheme.onSurfaceVariant
+                tint = Color.White
             )
             Spacer(modifier = Modifier.width(4.dp))
             Text(
                 text = "Filtrar",
-                color = MaterialTheme.colorScheme.onSurfaceVariant,
+                color = Color.White,
                 style = MaterialTheme.typography.bodyMedium
             )
         }

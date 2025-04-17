@@ -78,5 +78,6 @@ dependencies {
     implementation (libs.accompanist.systemuicontroller)
 
     implementation(libs.androidx.core.splashscreen.v100)
-
+    implementation (libs.material3)
+    implementation ("androidx.compose.material3:material3:1.3.2")
 }

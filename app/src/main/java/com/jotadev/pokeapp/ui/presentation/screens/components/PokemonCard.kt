@@ -1,6 +1,7 @@
 package com.jotadev.pokeapp.ui.presentation.screens.components
 
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -37,10 +38,10 @@ fun PokemonCard(
     onFavoriteClick: () -> Unit = {}
 ) {
     Card(
-        modifier = modifier
-            .height(150.dp)
-            .width(40.dp)
-            .padding(7.dp),
+        modifier = modifier.clickable { true }
+            .height(220.dp)
+            .width(50.dp)
+            .padding(5.dp),
         shape = RoundedCornerShape(16.dp),
         elevation = CardDefaults.cardElevation(defaultElevation = 4.dp)
     ) {
@@ -93,15 +94,15 @@ fun PokemonCard(
 
             }
 
-            Spacer(modifier = Modifier.height(8.dp))
+            Spacer(modifier = Modifier.weight(1f))
 
             // Nombre del Pokémon
             Text(
                 modifier = Modifier.padding(bottom = 10.dp),
-                text = "hola",
+                text = "POKEMON",
                 style = MaterialTheme.typography.titleMedium.copy(
                     fontWeight = FontWeight.ExtraBold,
-                    fontSize = 19.sp
+                    fontSize = 18.sp
                 ),
                 color = orange
             )

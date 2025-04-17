@@ -92,7 +92,7 @@ fun MainScreen() {
                     .align(Alignment.BottomCenter)
                     .clip(RoundedCornerShape(18.dp)),
                 containerColor = MaterialTheme.colorScheme.surface,
-                tonalElevation = 8.dp
+                tonalElevation = 90.dp
             ) {
                 val navBackStackEntry by navController.currentBackStackEntryAsState()
                 val currentRoute = navBackStackEntry?.destination?.route
