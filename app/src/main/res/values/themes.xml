@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-
-    <style name="Theme.PokeAPP" parent="android:Theme.Material.Light.NoActionBar" />
+    <style name="Theme.PokeAPP" parent="android:Theme.Material.Light.NoActionBar">
+        <item name="windowSplashScreenBackground">@color/yellow</item>
+        <item name="windowSplashScreenAnimatedIcon">@drawable/pokeimg</item>
+    </style>
 </resources>

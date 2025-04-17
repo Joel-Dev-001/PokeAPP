@@ -65,7 +65,6 @@ dependencies {
 //    implementation (libs.androidx.compose.ui)
 //    implementation (libs.androidx.material)
 //    implementation (libs.ui.tooling.preview)
-    val nav_version = "2.8.9"
 
     implementation(libs.androidx.navigation.compose)
 
@@ -77,4 +76,7 @@ dependencies {
 
     // Otras dependencias que podrías necesitar
     implementation (libs.accompanist.systemuicontroller)
+
+    implementation(libs.androidx.core.splashscreen.v100)
+
 }
