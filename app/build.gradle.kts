@@ -58,5 +58,23 @@ dependencies {
     debugImplementation(libs.androidx.ui.test.manifest)
 
     //config theme
+    implementation(libs.accompanist.systemuicontroller)
+
+
+    // Compose UI
+//    implementation (libs.androidx.compose.ui)
+//    implementation (libs.androidx.material)
+//    implementation (libs.ui.tooling.preview)
+    val nav_version = "2.8.9"
+
+    implementation(libs.androidx.navigation.compose)
+
+    // Compose Navigation
+    implementation (libs.androidx.navigation.compose)
+
+    // ViewModel para Compose
+    implementation (libs.androidx.lifecycle.viewmodel.compose)
+
+    // Otras dependencias que podrías necesitar
     implementation (libs.accompanist.systemuicontroller)
 }
