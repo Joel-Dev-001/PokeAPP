@@ -1,4 +1,4 @@
-package com.jotadev.pokeapp
+package com.jotadev.pokeapp.ui.presentation.screens.home
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.*
@@ -9,6 +9,10 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
+import com.jotadev.pokeapp.ui.presentation.screens.components.FilterButton
+import com.jotadev.pokeapp.ui.presentation.screens.components.PokemonCard
+import com.jotadev.pokeapp.R
+import com.jotadev.pokeapp.ui.presentation.screens.components.SearchBar
 
 @Composable
 fun HomeScreen(
@@ -52,8 +56,8 @@ fun HomeScreen(
 
         LazyVerticalGrid(
             columns = GridCells.Fixed(2),
-            horizontalArrangement = Arrangement.spacedBy(8.dp),
-            verticalArrangement = Arrangement.spacedBy(8.dp),
+            horizontalArrangement = Arrangement.spacedBy(5.dp),
+            verticalArrangement = Arrangement.spacedBy(5.dp),
             modifier = Modifier.fillMaxSize()
         ) {
             items(20) { index ->

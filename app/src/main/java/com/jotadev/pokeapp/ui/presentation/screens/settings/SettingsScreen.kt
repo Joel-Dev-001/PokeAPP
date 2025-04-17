@@ -1,4 +1,4 @@
-package com.jotadev.pokeapp
+package com.jotadev.pokeapp.ui.presentation.screens.settings
 
 import android.widget.Toast
 import androidx.compose.foundation.clickable
@@ -24,7 +24,7 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
-import com.jotadev.pokeapp.ui.theme.orange
+import com.jotadev.pokeapp.ui.presentation.theme.orange
 
 @Composable
 fun SettingsScreen() {

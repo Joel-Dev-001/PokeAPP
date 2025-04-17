@@ -1,4 +1,4 @@
-package com.jotadev.pokeapp.ui.theme
+package com.jotadev.pokeapp.ui.presentation.theme
 
 import androidx.compose.ui.graphics.Color
 
@@ -11,5 +11,5 @@ val PurpleGrey40 = Color(0xFF625b71)
 val Pink40 = Color(0xFF7D5260)
 
 val orange = Color(0xFFFF5733)
-val yellow = Color(0xFFFFCD09)
-val bluePokemon = Color(0xFF245DA9)
+//val yellow = Color(0xFFFFCD09)
+//val bluePokemon = Color(0xFF245DA9)

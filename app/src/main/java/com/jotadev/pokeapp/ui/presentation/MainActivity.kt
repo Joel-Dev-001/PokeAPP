@@ -1,4 +1,4 @@
-package com.jotadev.pokeapp
+package com.jotadev.pokeapp.ui.presentation
 
 import android.os.Bundle
 import androidx.activity.ComponentActivity
@@ -31,8 +31,11 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
-import com.jotadev.pokeapp.ui.theme.PokeAPPTheme
-import com.jotadev.pokeapp.ui.theme.orange
+import com.jotadev.pokeapp.ui.presentation.screens.home.HomeScreen
+import com.jotadev.pokeapp.ui.presentation.screens.settings.SettingsScreen
+import com.jotadev.pokeapp.ui.presentation.screens.favorite.FavoriteScreen
+import com.jotadev.pokeapp.ui.presentation.theme.PokeAPPTheme
+import com.jotadev.pokeapp.ui.presentation.theme.orange
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {

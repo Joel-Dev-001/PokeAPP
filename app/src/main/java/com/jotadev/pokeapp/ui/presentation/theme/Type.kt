@@ -1,4 +1,4 @@
-package com.jotadev.pokeapp.ui.theme
+package com.jotadev.pokeapp.ui.presentation.theme
 
 import androidx.compose.material3.Typography
 import androidx.compose.ui.text.TextStyle

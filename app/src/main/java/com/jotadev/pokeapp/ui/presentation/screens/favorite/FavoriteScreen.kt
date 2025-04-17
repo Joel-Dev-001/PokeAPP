@@ -1,4 +1,4 @@
-package com.jotadev.pokeapp
+package com.jotadev.pokeapp.ui.presentation.screens.favorite
 
 import android.text.TextUtils.isEmpty
 import androidx.compose.foundation.layout.Arrangement
@@ -17,6 +17,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
+import com.jotadev.pokeapp.ui.presentation.screens.components.PokemonCard
 
 @Composable
 fun FavoriteScreen(

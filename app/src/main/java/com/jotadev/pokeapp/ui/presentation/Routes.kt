@@ -1,4 +1,6 @@
-package com.jotadev.pokeapp
+package com.jotadev.pokeapp.ui.presentation
+
+import com.jotadev.pokeapp.R
 
 sealed class Routes(
     val title: String,

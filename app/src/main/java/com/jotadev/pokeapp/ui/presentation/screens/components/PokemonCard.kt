@@ -1,4 +1,4 @@
-package com.jotadev.pokeapp
+package com.jotadev.pokeapp.ui.presentation.screens.components
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
@@ -28,7 +28,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.jotadev.pokeapp.ui.theme.orange
+import com.jotadev.pokeapp.ui.presentation.theme.orange
 
 @Composable
 fun PokemonCard(
@@ -38,8 +38,9 @@ fun PokemonCard(
 ) {
     Card(
         modifier = modifier
-            .fillMaxWidth()
-            .padding(8.dp),
+            .height(150.dp)
+            .width(40.dp)
+            .padding(7.dp),
         shape = RoundedCornerShape(16.dp),
         elevation = CardDefaults.cardElevation(defaultElevation = 4.dp)
     ) {
