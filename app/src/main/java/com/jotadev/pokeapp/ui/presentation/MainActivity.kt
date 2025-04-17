@@ -48,7 +48,6 @@ class MainActivity : ComponentActivity() {
         }
     }
 }
-
 @Composable
 fun MainScreen() {
     val navController = rememberNavController()
@@ -85,7 +84,6 @@ fun MainScreen() {
                     SettingsScreen()
                 }
             }
-
             NavigationBar(
                 modifier = Modifier
                     .padding(start = 16.dp, end = 16.dp, bottom = 16.dp)
