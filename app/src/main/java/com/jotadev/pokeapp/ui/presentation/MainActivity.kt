@@ -3,8 +3,8 @@ package com.jotadev.pokeapp.ui.presentation
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
-import androidx.activity.enableEdgeToEdge
-import androidx.compose.foundation.isSystemInDarkTheme
+import androidx.core.view.WindowCompat
+import androidx.core.view.WindowInsetsControllerCompat
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
@@ -18,11 +18,15 @@ import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.draw.scale
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.toArgb
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
@@ -40,16 +44,33 @@ import com.jotadev.pokeapp.ui.presentation.theme.orange
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        enableEdgeToEdge()
+
+        WindowCompat.setDecorFitsSystemWindows(window, false)
+        false.setupStatusBar()
+
         setContent {
-            PokeAPPTheme{
-                MainScreen()
+            var isDarkTheme by remember { mutableStateOf(false) } // Estado del tema
+            PokeAPPTheme(darkTheme = isDarkTheme) { // Pasar estado a PokeAPPTheme
+                MainScreen(
+                    isDarkTheme = isDarkTheme,
+                    onDarkThemeToggle = { isDarkTheme = it } // Callback para cambiar el tema
+                )
             }
         }
     }
+
+    private fun Boolean.setupStatusBar() {
+        this@MainActivity.window.statusBarColor = orange.toArgb()
+        WindowInsetsControllerCompat(this@MainActivity.window, this@MainActivity.window.decorView).isAppearanceLightStatusBars =
+            this
+    }
 }
+
 @Composable
-fun MainScreen() {
+fun MainScreen(
+    isDarkTheme: Boolean,
+    onDarkThemeToggle: (Boolean) -> Unit
+) {
     val navController = rememberNavController()
     val screens = listOf(
         Routes.HomeScreen,
@@ -57,7 +78,8 @@ fun MainScreen() {
         Routes.SettingsScreen
     )
 
-    val isDarkTheme = isSystemInDarkTheme()
+    var showLogoutDialog by remember { mutableStateOf(false) }
+
     val selectedColor = orange
     val unselectedColor = if (isDarkTheme) Color.White.copy(alpha = 0.6f) else Color.Black.copy(alpha = 0.6f)
 
@@ -81,7 +103,11 @@ fun MainScreen() {
                     FavoriteScreen()
                 }
                 composable(Routes.SettingsScreen.route) {
-                    SettingsScreen()
+                    SettingsScreen(
+                        isDarkModeEnabled = isDarkTheme,
+                        onDarkModeToggle = onDarkThemeToggle,
+                        onLogout = { showLogoutDialog = true }
+                    )
                 }
             }
             NavigationBar(
@@ -90,7 +116,7 @@ fun MainScreen() {
                     .align(Alignment.BottomCenter)
                     .clip(RoundedCornerShape(18.dp)),
                 containerColor = MaterialTheme.colorScheme.surface,
-                tonalElevation = 90.dp
+                tonalElevation = 200.dp
             ) {
                 val navBackStackEntry by navController.currentBackStackEntryAsState()
                 val currentRoute = navBackStackEntry?.destination?.route
@@ -112,7 +138,7 @@ fun MainScreen() {
                             Text(
                                 text = screen.title,
                                 fontWeight = if (selected) FontWeight.ExtraBold else FontWeight.Normal,
-                                modifier = Modifier.scale(if(selected)1.1f else 1f),
+                                modifier = Modifier.scale(if (selected) 1.1f else 1f),
                                 color = if (selected) selectedColor else unselectedColor
                             )
                         },
@@ -139,6 +165,3 @@ fun MainScreen() {
         }
     }
 }
-
-
-

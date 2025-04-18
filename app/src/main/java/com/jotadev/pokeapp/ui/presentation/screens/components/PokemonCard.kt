@@ -53,15 +53,13 @@ fun PokemonCard(
             Row(
                 modifier = Modifier
                     .fillMaxWidth(),
-//                verticalAlignment = Alignment.CenterVertically,
                 horizontalArrangement = Arrangement.SpaceBetween
             ) {
-                // Box con bordes redondeados y texto
                 Box(
                     modifier = Modifier
                         .height(40.dp)
                         .width(40.dp)
-                        .clip(RoundedCornerShape(bottomEnd = 16.dp)) // Bordes redondeados
+                        .clip(RoundedCornerShape(bottomEnd = 16.dp))
                         .background(orange),
                     contentAlignment = Alignment.Center
                 ) {
@@ -85,8 +83,6 @@ fun PokemonCard(
                     )
                 }
             }
-
-            // Imagen del Pokémon
             Box(
                 modifier = Modifier.fillMaxWidth(),
                 contentAlignment = Alignment.Center
@@ -95,8 +91,6 @@ fun PokemonCard(
             }
 
             Spacer(modifier = Modifier.weight(1f))
-
-            // Nombre del Pokémon
             Text(
                 modifier = Modifier.padding(bottom = 10.dp),
                 text = "POKEMON",

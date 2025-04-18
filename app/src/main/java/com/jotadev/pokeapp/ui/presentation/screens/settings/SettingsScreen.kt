@@ -6,64 +6,49 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
-import androidx.compose.foundation.layout.WindowInsets
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.systemBars
-import androidx.compose.foundation.layout.windowInsetsPadding
+import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material3.AlertDialog
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
-import androidx.compose.material3.CenterAlignedTopAppBar
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Switch
 import androidx.compose.material3.Text
-import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.graphics.RectangleShape
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.jotadev.pokeapp.ui.presentation.MainActivity
+import com.jotadev.pokeapp.ui.presentation.screens.components.TopAppBar
 import com.jotadev.pokeapp.ui.presentation.theme.orange
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun SettingsScreen() {
+fun SettingsScreen(
+    isDarkModeEnabled: Boolean,
+    onDarkModeToggle: (Boolean) -> Unit,
+    onLogout: () -> Unit
+) {
+    var showDialog = remember { mutableStateOf(false) } // Estado para mostrar diálogo
     val context = LocalContext.current
+
     Scaffold(
         topBar = {
-            CenterAlignedTopAppBar(
-                title = {
-                    Text(
-                        text = "CONFIGURACIÓN",
-                        style = MaterialTheme.typography.headlineMedium,
-                        fontWeight = FontWeight.ExtraBold,
-                        textAlign = TextAlign.Center,
-                        fontSize = 25.sp
-                    )
-                },
-                modifier = Modifier
-                    .height(60.dp)
-                    .shadow(
-                        elevation = 100.dp,
-                        shape = RectangleShape
-                    ),
-                colors = TopAppBarDefaults.centerAlignedTopAppBarColors(
-                    containerColor = MaterialTheme.colorScheme.surface,
-                )
-            )
-        },
-//        modifier = Modifier.windowInsetsPadding(WindowInsets.systemBars)
+            TopAppBar(title = "CONFIGURACIÓN")
+        }
     ) { innerPadding ->
         Column(
             modifier = Modifier
@@ -81,15 +66,14 @@ fun SettingsScreen() {
                     text = "Modo Oscuro",
                     style = MaterialTheme.typography.bodyLarge,
                     textAlign = TextAlign.Start,
-                    modifier = Modifier
-                        .padding(vertical = 8.dp)
+                    modifier = Modifier.padding(vertical = 8.dp)
                 )
                 Switch(
-                    checked = false,
-                    onCheckedChange = null
+                    checked = isDarkModeEnabled,
+                    onCheckedChange = { onDarkModeToggle(it) } // Cambia el estado del tema
                 )
             }
-            Spacer(modifier = Modifier.height(8.dp))
+            Spacer(modifier = Modifier.height(16.dp))
             Row(
                 modifier = Modifier
                     .fillMaxWidth()
@@ -104,24 +88,65 @@ fun SettingsScreen() {
                     text = "Idioma",
                     style = MaterialTheme.typography.bodyLarge,
                     textAlign = TextAlign.Start,
-                    modifier = Modifier
-                        .padding(vertical = 8.dp)
+                    modifier = Modifier.padding(vertical = 8.dp)
                 )
             }
             Button(
-                onClick = {},
+                onClick = { showDialog.value = true }, // Muestra el cuadro de diálogo al hacer clic
                 modifier = Modifier
                     .fillMaxWidth()
                     .padding(20.dp),
                 shape = RoundedCornerShape(10.dp),
-                colors = ButtonDefaults.buttonColors(
-                    containerColor = orange
-                )
+                colors = ButtonDefaults.buttonColors(containerColor = orange)
             ) {
                 Text(
                     text = "Cerrar Sesión",
                     style = MaterialTheme.typography.bodyLarge,
                     color = Color.White
+                )
+            }
+            if (showDialog.value) {
+                AlertDialog(
+                    modifier = Modifier.height(110.dp).width(600.dp),
+                    onDismissRequest = { showDialog.value = false },
+                    title = {
+                        Text(text = "¿SEGURO QUE DESEAS CERRAR SESIÓN?", fontSize = 16.sp)
+                    },
+                    confirmButton = {
+                        Text(
+                            text = "ACEPTAR",
+                            style = MaterialTheme.typography.bodyLarge.copy(
+                                color = orange,
+                                fontSize = 15.sp,
+                                fontWeight = FontWeight.Bold
+                            ),
+                            modifier = Modifier
+                                .clickable {
+                                    onLogout()
+                                    (context as MainActivity).finish()
+                                    showDialog.value = false
+                                },
+                            textAlign = TextAlign.End
+                        )
+
+                    },
+                    dismissButton = {
+                        Text(
+                            text = "CANCELAR",
+                            style = MaterialTheme.typography.bodyLarge.copy(
+                                color = Color.Gray,
+                                fontSize = 15.sp,
+                                fontWeight = FontWeight.Bold
+                            ),
+                            modifier = Modifier
+                                .clickable {
+                                    showDialog.value = false
+                                },
+                            textAlign = TextAlign.End
+                        )
+
+                    },
+                    shape = RoundedCornerShape(12.dp),
                 )
             }
         }
