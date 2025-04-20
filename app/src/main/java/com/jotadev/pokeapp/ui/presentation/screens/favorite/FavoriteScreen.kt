@@ -24,12 +24,14 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.navigation.NavController
 import com.jotadev.pokeapp.ui.presentation.screens.components.PokemonCard
 import com.jotadev.pokeapp.ui.presentation.screens.components.TopAppBar
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun FavoriteScreen(
+    navController: NavController
 
 ) {
     Scaffold(
@@ -62,7 +64,7 @@ fun FavoriteScreen(
                     modifier = Modifier.fillMaxSize()
                 ) {
                     items(20) {
-                        PokemonCard()
+                        PokemonCard(navController = navController)
                     }
                 }
             }

@@ -37,7 +37,7 @@ import com.jotadev.pokeapp.ui.presentation.screens.components.SearchBar
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun HomeScreen() {
+fun HomeScreen(navController: androidx.navigation.NavController) {
     Scaffold(
         topBar = {
             CenterAlignedTopAppBar(
@@ -80,7 +80,7 @@ fun HomeScreen() {
                 )
             ) {
                 items(20) { index ->
-                    PokemonCard()
+                    PokemonCard(navController = navController)
                 }
             }
 

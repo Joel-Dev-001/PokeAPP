@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">PokeAPP</string>
+    <string name="title_activity_details_screen">DetailsScreen</string>
 </resources>
