@@ -107,17 +107,17 @@ fun SettingsScreen(
             }
             if (showDialog.value) {
                 AlertDialog(
-                    modifier = Modifier.height(110.dp).width(600.dp),
+                    modifier = Modifier.fillMaxWidth(),
                     onDismissRequest = { showDialog.value = false },
                     title = {
-                        Text(text = "¿SEGURO QUE DESEAS CERRAR SESIÓN?", fontSize = 16.sp)
+                        Text(text = "¿Seguro que desea cerrar la sesión?", fontSize = 16.sp)
                     },
                     confirmButton = {
                         Text(
                             text = "ACEPTAR",
                             style = MaterialTheme.typography.bodyLarge.copy(
                                 color = orange,
-                                fontSize = 15.sp,
+                                fontSize = 14.sp,
                                 fontWeight = FontWeight.Bold
                             ),
                             modifier = Modifier
@@ -135,7 +135,7 @@ fun SettingsScreen(
                             text = "CANCELAR",
                             style = MaterialTheme.typography.bodyLarge.copy(
                                 color = Color.Gray,
-                                fontSize = 15.sp,
+                                fontSize = 14.sp,
                                 fontWeight = FontWeight.Bold
                             ),
                             modifier = Modifier
@@ -146,7 +146,7 @@ fun SettingsScreen(
                         )
 
                     },
-                    shape = RoundedCornerShape(12.dp),
+                    shape = RoundedCornerShape(10.dp),
                 )
             }
         }
